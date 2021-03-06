@@ -1,0 +1,286 @@
+window:
+
+  # Don't allow terminal applications to change Alacritty's window title.
+  dynamic_title: false
+
+  padding:
+    x: 4
+    y: 4
+
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: false
+  # Draw borders for i3
+  decorations: full
+
+font:
+  normal:
+    family: MesloLGL Nerd Font Mono
+    style: Regular
+
+  bold:
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: MesloLGL Nerd Font Mono
+    style: Bold
+
+  italic:
+    # If the italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: MesloLGL Nerd Font Mono
+    style: Italic
+
+  bold_italic:
+    # If the bold italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: MesloLGL Nerd Font Mono
+    style: Bold Italic
+
+  size: 14.0
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the right,
+  # increasing `y` moves the glyph upwards.
+  glyph_offset:
+    x: 0
+    y: 0
+
+colors:
+  primary:
+    background: '#282828'
+    foreground: '#EBDBB2'
+    #dim_foreground: '#9a9a9a'
+    #bright_foreground: '#ffffff'
+
+  # Colors which should be used to draw the terminal cursor. If these are unset,
+  # the cursor color will be the inverse of the cell color.
+  cursor:
+    text: '#FFB536'
+    cursor: '#ADD8e6'
+
+  # Selection colors
+  #
+  # Colors which should be used to draw the selection area. If selection
+  # background is unset, selection color will be the inverse of the cell colors.
+  # If only text is unset the cell text color will remain the same.
+  #selection:
+  #  text: '#eaeaea'
+  #  background: '#404040'
+
+  normal:
+    black:   '#191726'
+    red:     '#FF5C57'
+    green:   '#FFB536'
+    yellow:  '#FFB536'
+    blue:    '#5AF78E'
+    magenta: '#9AEDFE'
+    cyan:    '#57C7FF'
+    white:   '#FFFFFF'
+
+  bright:
+    black:   '#404040'
+    red:     '#FF5C57'
+    green:   '#5AF78E'
+    yellow:  '#FFB536'
+    blue:    '#57C7FF'
+    magenta: '#c397d8'
+    cyan:    '#9AEDFE'
+    white:   '#FFFFFF'
+
+  # If the dim colors are not set, they will be calculated automatically based
+  # on the `normal` colors.
+  dim:
+    black:   '#000000'
+    red:     '#8c3336'
+    green:   '#7a8530'
+    yellow:  '#97822e'
+    blue:    '#506d8f'
+    magenta: '#80638e'
+    cyan:    '#497e7a'
+    white:   '#9a9a9a'
+
+# Visual Bell
+#
+# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
+# rung, the terminal background will be set to white and transition back to the
+# default background color. You can control the rate of this transition by
+# setting the `duration` property (represented in milliseconds). You can also
+# configure the transition function by setting the `animation` property.
+#
+# Values for `animation`:
+#   - Ease
+#   - EaseOut
+#   - EaseOutSine
+#   - EaseOutQuad
+#   - EaseOutCubic
+#   - EaseOutQuart
+#   - EaseOutQuint
+#   - EaseOutExpo
+#   - EaseOutCirc
+#   - Linear
+#
+# Specifying a `duration` of `0` will disable the visual bell.
+#visual_bell:
+#  animation: EaseOutExpo
+#  duration: 0
+#  color: '#ffffff'
+
+background_opacity: 0.50
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+
+cursor:
+  style: Block
+  thickness: 0.15
+
+  # If this is `true`, the cursor will be rendered as a hollow box when the
+  # window is not focused.
+  unfocused_hollow: true
+
+live_config_reload: true
+
+mouse_bindings:
+  - { mouse: Right, action: PasteSelection }
+
+# Key bindings
+#
+keyboard_bindings:
+  #     - { key: Left,     mods: Control, chars: "\x1bb"                       }
+  #   - { key: Right,    mods: Control, chars: "\x1bf"                       }
+     - { key: Left,      mods: Control, chars: "\x1b[15c"                   }
+     - { key: Right,    mods: Control, chars: "\x1b[1;5C"                   }
+# Key bindings are specified as a list of objects. For example, this is the
+# default paste binding:
+#
+# `- { key: V, mods: Control|Shift, action: Paste }`
+#
+# Each key binding will specify a:
+#
+# - `key`: Identifier of the key pressed
+#
+#    - A-Z
+#    - F1-F24
+#    - Key0-Key9
+#
+#    A full list with available key codes can be found here:
+#    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+#
+#    Instead of using the name of the keys, the `key` field also supports using
+#    the scancode of the desired key. Scancodes have to be specified as a
+#    decimal number. This command will allow you to display the hex scancodes
+#    for certain keys:
+#
+#       `showkey --scancodes`.
+#
+# Then exactly one of:
+#
+# - `chars`: Send a byte sequence to the running application
+#
+#    The `chars` field writes the specified string to the terminal. This makes
+#    it possible to pass escape sequences. To find escape codes for bindings
+#    like `PageUp` (`"\x1b[5~"`), you can run the command `showkey -a` outside
+#    of tmux. Note that applications use terminfo to map escape sequences back
+#    to keys. It is therefore required to update the terminfo when changing an
+#    escape sequence.
+#
+# - `action`: Execute a predefined action
+#
+#   - Copy
+#   - Paste
+#   - PasteSelection
+#   - IncreaseFontSize
+#   - DecreaseFontSize
+#   - ResetFontSize
+#   - ScrollPageUp
+#   - ScrollPageDown
+#   - ScrollLineUp
+#   - ScrollLineDown
+#   - ScrollToTop
+#   - ScrollToBottom
+#   - ClearHistory
+#   - Hide
+#   - Minimize
+#   - Quit
+#   - ToggleFullscreen
+#   - SpawnNewInstance
+#   - ClearLogNotice
+#   - ReceiveChar
+#   - None
+#
+# - `command`: Fork and execute a specified command plus arguments
+#
+#    The `command` field must be a map containing a `program` string and an
+#    `args` array of command line parameter strings. For example:
+#       `{ program: "alacritty", args: ["-e", "vttest"] }`
+#
+# And optionally:
+#
+# - `mods`: Key modifiers to filter binding actions
+#
+#    - Command
+#    - Control
+#    - Option
+#    - Super
+#    - Shift
+#    - Alt
+#
+#    Multiple `mods` can be combined using `|` like this:
+#       `mods: Control|Shift`.
+#    Whitespace and capitalization are relevant and must match the example.
+#
+# - `mode`: Indicate a binding for only specific terminal reported modes
+#
+#    This is mainly used to send applications the correct escape sequences
+#    when in different modes.
+#
+#    - AppCursor
+#    - AppKeypad
+#    - Alt
+#
+#    A `~` operator can be used before a mode to apply the binding whenever
+#    the mode is *not* active, e.g. `~Alt`.
+#
+# Bindings are always filled by default, but will be replaced when a new
+# binding with the same triggers is defined. To unset a default binding, it can
+# be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
+# a no-op if you do not wish to receive input characters for that binding.
+#
+# If the same trigger is assigned to multiple actions, all of them are executed
+# at once.
+#key_bindings:
+  # (Windows, Linux, and BSD only)
+  #- { key: V,        mods: Control|Shift, action: Paste            }
+  #- { key: C,        mods: Control|Shift, action: Copy             }
+  #- { key: Insert,   mods: Shift,         action: PasteSelection   }
+  #- { key: Key0,     mods: Control,       action: ResetFontSize    }
+  #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
+  #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+
+  # (macOS only)
+  #- { key: Key0,   mods: Command,         action: ResetFontSize    }
+  #- { key: Equals, mods: Command,         action: IncreaseFontSize }
+  #- { key: Add,    mods: Command,         action: IncreaseFontSize }
+  #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
+  #- { key: K,      mods: Command,         action: ClearHistory     }
+  #- { key: K,      mods: Command,         chars: "\x0c"            }
+  #- { key: V,      mods: Command,         action: Paste            }
+  #- { key: C,      mods: Command,         action: Copy             }
+  #- { key: H,      mods: Command,         action: Hide             }
+  #- { key: M,      mods: Command,         action: Minimize         }
+  #- { key: Q,      mods: Command,         action: Quit             }
+  #- { key: W,      mods: Command,         action: Quit             }
+  #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
+
+  #- { key: Paste,                    action: Paste                            }
+  #- { key: Copy,                     action: Copy                             }
+  #- { key: L,         mods: Control, action: ClearLogNotice                   }
+  #- { key: L,         mods: Control, chars: "\x0c"                            }
+  #- { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
+  #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
+  #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
+  #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt
