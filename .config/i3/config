@@ -214,13 +214,17 @@ bindsym $mod+s exec --no-startup-id flameshot gui
 # Change the language
 bindsym $mod+space exec --no-startup-id /home/omer/.my_scripts/change_keyboard_layout.sh
 
-exec --no-startup-id picom -b 
-exec --no-startup-id keepassxc
-for_window [title="^KeePass"] move scratchpad
-exec_always --no-startup-id xfce4-power-manager
-
 bindsym $mod+Shift+t move scratchpad
 bindsym $mod+t scratchpad show
 
 # Change background
 bindsym $mod+Shift+w exec --no-startup-id /home/omer/.my_scripts/set_background_pic.sh
+
+# Change monitor
+bindsym $mod+Shift+h exec --no-startup-id /home/omer/.my_scripts/autorandr_connect2.sh
+
+exec --no-startup-id picom -b 
+exec --no-startup-id keepassxc
+for_window [title="^KeePass"] move scratchpad
+exec_always --no-startup-id xfce4-power-manager
+exec --no-startup-id /home/omer/.my_scripts/autorandr_connect2.sh
